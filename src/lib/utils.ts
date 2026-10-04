@@ -25,3 +25,15 @@ export function formatFollowers(count: number): string {
   }
   return String(count);
 }
+
+/**
+ * Prepends the deployment basePath so public-folder images resolve
+ * correctly on GitHub Pages (and other static hosts with a sub-path).
+ *
+ * Locally NEXT_PUBLIC_BASE_PATH is "" so paths stay unchanged.
+ * @example getImagePath("/images/model-1.jpg") → "/ai-bloggers/images/model-1.jpg"
+ */
+export function getImagePath(path: string): string {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  return `${base}${path}`;
+}
