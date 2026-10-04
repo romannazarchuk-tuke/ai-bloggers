@@ -197,6 +197,7 @@ export default function Catalog({ onSelectBlogger }: CatalogProps) {
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.18}
+              dragDirectionLock
               onDragEnd={(_, info) => handleDragEnd(info.offset.x, info.velocity.x)}
             >
               <BloggerCard
