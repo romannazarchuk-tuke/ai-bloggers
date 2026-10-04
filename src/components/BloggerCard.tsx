@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Users } from "lucide-react";
-import { cn, formatFollowers } from "@/lib/utils";
+import { cn, formatFollowers, getImagePath } from "@/lib/utils";
 import type { Blogger } from "@/data/mockData";
 
 // ── Props ─────────────────────────────────────────────────────────
@@ -109,7 +109,7 @@ export default function BloggerCard({ blogger, onClick, index = 0, enableTilt = 
         {/* ── Portrait ─────────────────────────────────────────── */}
         <div className="relative aspect-[2/3] w-full overflow-hidden">
           <Image
-            src={imagePath}
+            src={getImagePath(imagePath)}
             alt={`Портрет ${name}`}
             fill
             sizes="(max-width: 640px) 100vw, 50vw"

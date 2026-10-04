@@ -12,7 +12,7 @@ import {
   Calendar,
   ChevronDown,
 } from "lucide-react";
-import { cn, formatFollowers } from "@/lib/utils";
+import { cn, formatFollowers, getImagePath } from "@/lib/utils";
 import type { Blogger, Post } from "@/data/mockData";
 
 // ── Animation Variants ────────────────────────────────────────────
@@ -343,7 +343,7 @@ export default function ProfileSheet({ blogger, onClose }: ProfileSheetProps) {
             <div className="relative flex items-start gap-4 px-5 pb-4 pt-4 sm:px-6 sm:pt-5">
               <div className="relative h-24 w-16 shrink-0 overflow-hidden rounded-2xl border border-white/10 sm:h-28 sm:w-20">
                 <Image
-                  src={blogger.imagePath}
+                  src={getImagePath(blogger.imagePath)}
                   alt={`Аватар ${blogger.name}`}
                   fill
                   sizes="80px"
