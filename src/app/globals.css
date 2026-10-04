@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ──────────────────────────────────── */
+:root {
+  --radius: 1rem;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+  }
+
+  html {
+    /* Block ALL horizontal overflow at the root — no exceptions */
+    overflow-x: clip;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+  }
+
+  body {
+    @apply bg-zinc-950 text-zinc-100 antialiased;
+    overflow-x: clip;
+    min-height: 100dvh;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* ── Scrollbar ──────────────────────────────────────────── */
+  ::-webkit-scrollbar          { width: 4px; }
+  ::-webkit-scrollbar-track    { background: transparent; }
+  ::-webkit-scrollbar-thumb    { @apply bg-zinc-700 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-zinc-500; }
+
+  @media (max-width: 767px) {
+    * {
+      scrollbar-width: none;
+    }
+
+    *::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Dot-grid background pattern */
+  .bg-grid {
+    background-image: radial-gradient(
+      circle,
+      rgba(255,255,255,0.07) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+
+  /* Shared page atmosphere so the background continues below the hero. */
+  .ambient-bg {
+    background-color: #09090b;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+
+  /* Radial fade mask — used with bg-grid so dots fade to edges */
+  .mask-radial-fade {
+    -webkit-mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 50%,
+      black 30%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 50%,
+      black 30%,
+      transparent 100%
+    );
+  }
+
+  /* Ambient violet glow behind hero heading */
+  .glow-hero {
+    position: relative;
+  }
+  .glow-hero::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(139, 92, 246, 0.22) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: glow-breathe 7s ease-in-out infinite alternate;
+  }
+
+  /* Frosted glass card */
+  .glass-card {
+    background: rgba(255,255,255,0.035);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  /* Gradient text shortcut */
+  .gradient-text {
+    @apply bg-gradient-to-br from-violet-300 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent;
+  }
+}
+
+/* ─── Keyframes ──────────────────────────────────────────────── */
+@keyframes glow-breathe {
+  from { opacity: 0.6; transform: translateX(-50%) scale(1);    }
+  to   { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* Pulse-slow utility (not in Tailwind by default) */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}

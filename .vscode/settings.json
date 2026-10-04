@@ -1,0 +1,17 @@
+{
+  // Disable VS Code's built-in CSS validator — Tailwind handles this instead
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+
+  // Tell VS Code which custom at-rules to allow (suppresses red underlines)
+  "css.customData": [".vscode/tailwind.json"],
+
+  // Use Tailwind IntelliSense for CSS files
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "html"
+  }
+}
