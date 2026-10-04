@@ -77,8 +77,9 @@ export default function Hero() {
           variants={item}
           className="mt-10 flex items-center justify-center gap-4"
         >
-          <a
-            href="#catalog"
+          <button
+            type="button"
+            onClick={() => document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" })}
             className={cn(
               "rounded-2xl bg-violet-600 px-7 py-3.5",
               "text-sm font-bold text-white tracking-wide",
@@ -89,7 +90,7 @@ export default function Hero() {
             )}
           >
             Переглянути авторів
-          </a>
+          </button>
         </motion.div>
 
         {/* Scroll indicator */}
